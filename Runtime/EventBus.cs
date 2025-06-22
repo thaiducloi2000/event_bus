@@ -2,7 +2,8 @@ using System.Collections.Generic;
 using System;
 namespace EventBus
 {
-    public class EventBus<T> where T : IEventBus 
+    public interface IEventData {}
+    public class EventBus<T> where T : IEventData 
     {
         protected static readonly Dictionary<int, Delegate> listeners = new(); 
         public static void AddListener<T>(int eventID, EventCallback<T> callback)
