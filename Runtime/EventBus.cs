@@ -7,7 +7,7 @@ namespace EventBus
     public class EventBus<T> where T : IEventChannel 
     {
         protected static readonly Dictionary<int, Delegate> listeners = new(); 
-        public static void AddListener<T>(int eventID, EventCallback<T> callback)
+        public static void AddListener<TData>(int eventID, EventCallback<TData> callback) where TData : IEventData
         {
             if (listeners.ContainsKey(eventID))
             {
@@ -24,7 +24,7 @@ namespace EventBus
             listeners.Clear();
         }
 
-        public static void PostEvent<T>(int eventID, T param = default)
+        public static void PostEvent<TData>(int eventID, TData param = default) where TData : IEventData
         {
             if (!listeners.TryGetValue(eventID, out Delegate del)) return;
 
@@ -49,7 +49,7 @@ namespace EventBus
                 listeners[eventID] = null;
         }
 
-        public static void RemoveListener<T>(int eventID, EventCallback<T> callback) 
+        public static void RemoveListener<TData>(int eventID, EventCallback<TData> callback) where TData : IEventData
         {
             if (listeners.ContainsKey(eventID))
             {
