@@ -3,7 +3,8 @@ using System;
 namespace EventBus
 {
     public interface IEventData {}
-    public class EventBus<T> where T : IEventData 
+    public interface IEventChannel {}
+    public class EventBus<T> where T : IEventChannel 
     {
         protected static readonly Dictionary<int, Delegate> listeners = new(); 
         public static void AddListener<T>(int eventID, EventCallback<T> callback)
