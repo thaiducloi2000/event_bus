@@ -30,7 +30,7 @@ namespace EventBus
         }
     }
 
-    public interface IEventUIData
+    public interface IEventUIData : IEventData
     {
     }
 }
