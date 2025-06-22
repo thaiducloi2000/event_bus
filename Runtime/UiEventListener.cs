@@ -3,7 +3,7 @@ using System;
 
 namespace EventBus
 {
-    public class UiEventListener<TChannel> where T : IEventChannel 
+    public class UiEventListener<TChannel> where TChannel : IEventChannel 
     {
         private readonly Dictionary<int, Delegate> _handlers = new();
 
