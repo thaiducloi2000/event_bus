@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using System
+using System;
 
 namespace EventBus
 {
@@ -25,7 +25,12 @@ namespace EventBus
             {
                 EventBus<TChannel>.RemoveAllListener(kv.Key);
             }
+
             _handlers.Clear();
         }
+    }
+
+    public interface IEventUIData
+    {
     }
 }
