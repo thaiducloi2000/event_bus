@@ -31,7 +31,7 @@ namespace EventBus
             var invocationList = del.GetInvocationList(); // Snapshot 1 lần
             for (int i = 0; i < invocationList.Length; i++)
             {
-                var callback = invocationList[i] as EventCallback<T>;
+                var callback = invocationList[i] as EventCallback<TData>;
                 try
                 {
                     callback?.Invoke(param);
