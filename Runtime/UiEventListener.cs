@@ -3,17 +3,17 @@ using System;
 
 namespace EventBus
 {
-    public class UiEventListener<TChannel>
+    public class UiEventListener<TChannel> where TChannel : IEventBus
     {
         private readonly Dictionary<int, Delegate> _handlers = new();
 
-        public void AddListener<TPayload>(int eventID, Action<TPayload> callback) where TPayload : IEventUIData
+        public void AddListener<TPayload>(int eventID, EventCallback<TPayload> callback) where TPayload : IEventUIData
         {
             EventBus<TChannel>.AddListener<TPayload>(eventID, callback);
             _handlers[eventID] = callback;
         }
 
-        public void RemoveListener<TPayload>(int eventID, Action<TPayload> callback) where TPayload : IEventUIData
+        public void RemoveListener<TPayload>(int eventID, EventCallback<TPayload> callback) where TPayload : IEventUIData
         {
             EventBus<TChannel>.RemoveListener<TPayload>(eventID, callback);
             _handlers.Remove(eventID);
